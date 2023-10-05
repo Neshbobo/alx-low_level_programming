@@ -1,2 +1,2 @@
 #!/bin/bash
-cpp "$CFILE" -O C
+export CFILE=my_c_file.c
