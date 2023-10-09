@@ -2,28 +2,42 @@
 #include <stdlib.h>
 #include <time.h>
 
+/**
+* main - Entry point of the program
+*
+* Return: Always 0 (success)
+*/
 int main(void)
 {
-    int n;
+int n;
 
-    srand(time(0));
-    n = rand() - RAND_MAX / 2;
+/* Initialize the random number generator with the current time */
+srand(time(0));
 
-    printf("The number %d is ", n);
+/* Generate a random number between INT_MIN and INT_MAX */
+n = rand();
 
-    if (n > 0)
-    {
-        printf("positive\n");
-    }
-    else if (n < 0)
-    {
-        printf("negative\n");
-    }
-    else
-    {
-        printf("zero\n");
-    }
+printf("The number %d is ", n);
 
-    return (0);
+if (n > 0)
+{
+printf("positive\n");
 }
+else if (n < 0)
+{
+printf("negative\n");
+}
+else
+{
+printf("zero\n");
+}
+
+return (0);
+}
+
+
+
+
+
+
 
