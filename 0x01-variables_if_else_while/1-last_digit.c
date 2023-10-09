@@ -9,32 +9,40 @@
 */
 int main(void)
 {
-int n, last_digit;
+int n;
 
 /* Initialize the random number generator with the current time */
 srand(time(0));
 
-/* Generate a random number between INT_MIN and INT_MAX */
-n = rand();
+/* Generate a random number between -RAND_MAX and RAND_MAX */
+n = rand() - RAND_MAX / 2;
 
-/* Calculate the last digit of n */
-last_digit = n % 10;
+printf("Last digit of %d is ", n);
 
-printf("Last digit of %d is %d", n, last_digit);
+/* Get the last digit of n */
+int lastDigit = abs(n) % 10;
 
-if (last_digit > 5)
+printf("%d and is ", lastDigit);
+
+if (lastDigit > 5)
 {
-printf(" and is greater than 5\n");
+printf("greater than 5\n");
 }
-else if (last_digit == 0)
+else if (lastDigit == 0)
 {
-printf(" and is 0\n");
+printf("0\n");
 }
 else
 {
-printf(" and is less than 6 and not 0\n");
+printf("less than 6 and not 0\n");
 }
 
 return (0);
 }
+
+
+
+
+
+
 
