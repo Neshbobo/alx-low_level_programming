@@ -14,8 +14,8 @@ int n;
 /* Initialize the random number generator with the current time */
 srand(time(0));
 
-/* Generate a random number between INT_MIN and INT_MAX */
-n = rand();
+/* Generate a random number between -RAND_MAX and RAND_MAX */
+n = rand() - RAND_MAX / 2;
 
 printf("The number %d is ", n);
 
@@ -23,21 +23,14 @@ if (n > 0)
 {
 printf("positive\n");
 }
-else if (n < 0)
+else if (n == 0)
 {
-printf("negative\n");
+printf("zero\n");
 }
 else
 {
-printf("zero\n");
+printf("negative\n");
 }
 
 return (0);
 }
-
-
-
-
-
-
-
