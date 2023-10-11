@@ -1,12 +1,31 @@
-#ifndef MAIN_H
-#define MAIN_H
+#include "main.h"
 
 /**
-* _putchar - Custom putchar function
-* @c: The character to print
+* main - Entry point
 *
-* Return: 1 on success, -1 on error
+* Description: This program prints "_putchar" followed by a new line and
+*              returns 0.
+*
+* Return: Always 0
 */
-int _putchar(char c);
+int main(void)
+{
+_putchar('_');
+_putchar('p');
+_putchar('u');
+_putchar('t');
+_putchar('c');
+_putchar('h');
+_putchar('a');
+_putchar('r');
+_putchar('\n');
 
-#endif /* MAIN_H */
+return (0);
+}
+
+
+
+
+
+
+
