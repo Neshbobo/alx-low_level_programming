@@ -15,9 +15,10 @@
 */
 void print_rev(char *s)
 {
+int length = 0;
+
 if (s != NULL)
 {
-int length = 0;
 while (s[length] != '\0')
 {
 length++;
@@ -31,6 +32,4 @@ putchar(s[i]);
 putchar('\n');
 }
 }
-
-
 
