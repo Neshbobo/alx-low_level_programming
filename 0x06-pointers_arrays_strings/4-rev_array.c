@@ -18,6 +18,7 @@ while (left < right)
 temp = a[left];
 a[left] = a[right];
 a[right] = temp;
+
 /* Move the indices towards the center of the array */
 left++;
 right--;
