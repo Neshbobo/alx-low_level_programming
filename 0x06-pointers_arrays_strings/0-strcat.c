@@ -28,5 +28,5 @@ src_len++;
 /* Add the terminating null byte at the end of the concatenated string */
 dest[dest_len] = '\0';
 
- return (dest);
+return (dest);
 }
