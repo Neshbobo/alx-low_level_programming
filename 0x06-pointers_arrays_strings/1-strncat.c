@@ -3,36 +3,29 @@
 
 /**
 * _strncat - Concatenate two strings with a limit.
-* @dest: Pointer to the destination string.
-* @src: Pointer to the source string.
-* @n: Maximum number of bytes to use from src.
+* @dest: Pointer to destination string.
+* @src: Pointer to source string.
+* @n: Maximum number of bytes from src to use.
 *
 * Return: A pointer to the resulting string (dest).
 */
 char *_strncat(char *dest, char *src, int n)
 {
-int dest_len = 0;
-int i = 0;
+int dest_len = 0, i = 0;
 
-/* Calculate the length of the destination string */
-while (dest[dest_len] != '\0')
+while (dest[dest_len])
 dest_len++;
 
-/* Copy up to 'n' bytes from the source string to the end of the destination string */
-while (i < n && src[i] != '\0')
+while (i < n && src[i])
 {
 dest[dest_len] = src[i];
-dest_len++;
-i++;
+dest_len++, i++;
 }
 
-/* Add a terminating null byte at the end of the concatenated string */
 dest[dest_len] = '\0';
 
 return (dest);
 }
-
-
 
 
 
