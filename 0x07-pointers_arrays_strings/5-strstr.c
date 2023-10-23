@@ -2,11 +2,11 @@
 #include <stdio.h>
 
 /**
-* _strstr - Locate a substring in a string.
-* @haystack: String to search in.
+* _strstr - Locate substring in string.
+* @haystack: String to search.
 * @needle: Substring to locate.
 *
-* Return: Pointer to the beginning of the located substring, or NULL if not found.
+* Return: Pointer to start of located substring, or NULL if not found.
 */
 char *_strstr(char *haystack, char *needle)
 {
