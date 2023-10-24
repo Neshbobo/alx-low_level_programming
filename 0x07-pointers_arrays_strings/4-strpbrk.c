@@ -1,22 +1,21 @@
 #include "main.h"
-#include <stdio.h>
 
 /**
-* _strspn - Get the length of a prefix substring.
-* @s: The string to be checked.
-* @accept: The characters to be matched.
-*
-* Return: Number of bytes in the initial segment of s containing only accept.
+*_strpbrk - main function.
+*@s: a param
+*@accept: a param
+*Return: 0 (Success)
 */
-unsigned int _strspn(char *s, char *accept)
+char *_strpbrk(char *s, char *accept)
 {
-unsigned int len = 0;
-
-while (*s && strchr(accept, *s) != NULL)
+int a, b;
+for (a = 0; s[a] != '\0'; a++)
 {
-len++;
-s++;
+for (b = 0; accept[b] != '\0'; b++)
+{
+if (s[a] == accept[b])
+return (s + a);
 }
-
-return (len);
+}
+return (0);
 }
