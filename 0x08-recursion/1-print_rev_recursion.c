@@ -1,0 +1,29 @@
+#include "main.h"
+#include <stdio.h>
+
+/**
+* _print_rev_recursion - Prints a string in reverse.
+* @s: The string to be printed in reverse.
+*
+* Description: This function uses recursion to print the characters of
+* the provided string in reverse order, starting from the last character
+* and working its way towards the first character.
+*/
+void _print_rev_recursion(char *s)
+{
+if (*s == '\0')
+return;
+
+_print_rev_recursion(s + 1);
+putchar(*s);
+}
+
+int main(void)
+{
+char *str = "Hello, world!";
+_print_rev_recursion(str);
+putchar('\n');
+return (0);
+}
+
+

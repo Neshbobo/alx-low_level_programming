@@ -27,8 +27,3 @@ _puts_recursion(str);
 return (0);
 }
 
-
-
-
-
-
