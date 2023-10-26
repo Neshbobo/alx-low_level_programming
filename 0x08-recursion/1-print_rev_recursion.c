@@ -1,15 +1,14 @@
-#include <stdio.h>
+#include "main.h"
 
 /**
-* _print_rev_recursion - Prints a string in reverse.
-* @s: String to be printed in reverse.
-*
-* Description: Recursively prints the characters of the string in reverse order.
+* _print_rev_recursion - Prints a string in reverse using recursion
+* @s: The string to be printed in reverse
 */
 void _print_rev_recursion(char *s)
 {
-if (!*s)
-return;
+if (*s)
+{
 _print_rev_recursion(s + 1);
-putchar(*s);
+_putchar(*s);
+}
 }
