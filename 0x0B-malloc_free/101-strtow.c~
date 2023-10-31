@@ -1,0 +1,64 @@
+#include "main.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+/**
+* strtow - Splits a string into words.
+* @str: The string to split.
+*
+* Return: A pointer to an array of strings, with the last element as NULL,
+*         or NULL on failure.
+*/
+char **strtow(char *str)
+{
+if (str == NULL || *str == '\0')
+return (NULL);
+
+char **words = NULL;
+int word_count = 0;
+
+/* Count the number of words in the input string */
+int i = 0;
+while (str[i] != '\0')
+{
+while (str[i] == ' '
+i++;
+if (str[i] != '\0')
+{
+word_count++;
+while (str[i] != ' ' && str[i] != '\0')
+i++;
+}
+}
+
+/* Allocate memory for the array of words */
+words = (char **)malloc(sizeof(char *) * (word_count + 1));
+
+	if (words == NULL)
+		return (NULL);
+
+	int word_index = 0;
+	i = 0;
+
+	/* Split the input string into words and store them in the array */
+	while (str[i] != '\0') {
+		while (str[i] == ' ')
+			i++;
+		if (str[i] != '\0') {
+			int start = i;
+			while (str[i] != ' ' && str[i] != '\0')
+				i++;
+			int length = i - start;
+			words[word_index] = (char *)malloc(length + 1);
+			if (words[word_index] == NULL)
+				return (NULL);
+			for (int j = 0; j < length; j++)
+				words[word_index][j] = str[start + j];
+			words[word_index][length] = '\0';
+			word_index++;
+		}
+	}
+
+	words[word_count] = NULL;
+	return (words);
+}
