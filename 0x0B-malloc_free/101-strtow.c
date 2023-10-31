@@ -2,50 +2,63 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/**
-* strtow - Splits a string into words.
-* @str: The string to split.
-*
-* Return: A pointer to an array of strings, with the last element as NULL,
-*         or NULL on failure.
-*/
-char **strtow(char *str)
-{
-if (str == NULL || *str == '\0')
-return (NULL);
+int count_words(const char *str) {
+int count = 0;
+int is_word = 0;
 
-int word_count = 0;
-char **words = NULL;
-
-while (*str != '\0')
+while (*str) {
+if (*str == ' ' || *str == '\t' || *str == '\n') {
+is_word = 0;
+}
+else if (!is_word)
 {
-while (*str == ' ')
+is_word = 1;
+count++;
+}
 str++;
-
-if (*str != '\0')
-		{
-int word_length = 0;
-while (str[word_length] != ' ' && str[word_length] != '\0')
-word_length++;
-
-words = (char **)realloc(words, (word_count + 2) * sizeof(char *));
-if (words == NULL)
-return (NULL);
-
-words[word_count] = (char *)malloc(word_length + 1);
-if (words[word_count] == NULL)
-return (NULL);
-
-for (int i = 0; i < word_length; i++)
-words[word_count][i] = str[i];
-words[word_count][word_length] = '\0';
-
-word_count++;
-str += word_length;
-}
 }
 
-words[word_count] = NULL;
-return (words);
+return count;
 }
 
+char **strtow(char *str) {
+    if (str == NULL || *str == '\0') {
+        return NULL;
+    }
+
+    int num_words = count_words(str);
+    if (num_words == 0) {
+        return NULL;
+    }
+
+    char **words = (char **)malloc((num_words + 1) * sizeof(char *));
+    if (words == NULL) {
+        return NULL;
+    }
+
+    int word_index = 0;
+    int word_start = 0;
+    int in_word = 0;
+
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] == ' ' || str[i] == '\t' || str[i] == '\n') {
+            if (in_word) {
+                str[i] = '\0';
+                words[word_index] = &str[word_start];
+                word_index++;
+                in_word = 0;
+            }
+        } else if (!in_word) {
+            word_start = i;
+            in_word = 1;
+        }
+    }
+
+    if (in_word) {
+        words[word_index] = &str[word_start];
+    }
+
+    words[num_words] = NULL;
+
+    return words;
+}
