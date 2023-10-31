@@ -3,51 +3,38 @@
 #include <stdlib.h>
 
 /**
-* str_concat - Concatenates two strings without using for loops.
-* @s1: The first string.
-* @s2: The second string.
+* str_concat - Concatenates two strings.
+* @s1: The string to be concatenated upon.
+* @s2: The string to be concatenated to s1.
 *
-* Description: This function concatenates two strings by calculating their lengths
-* and using a recursive approach to copy the characters. It returns a pointer to
-* the concatenated string or NULL on failure.
-*
-* Return: A pointer to the concatenated string, or NULL on failure.
+* Return: If concatenation fails - NULL.
+*         Otherwise - a pointer the newly-allocated space in memory
+*                     containing the concatenated strings.
 */
 char *str_concat(char *s1, char *s2)
 {
-if (!s1)
+char *concat_str;
+int index, concat_index = 0, len = 0;
+
+if (s1 == NULL)
 s1 = "";
-if (!s2)
+
+if (s2 == NULL)
 s2 = "";
 
-int len1 = 0;
-while (s1[len1])
-len1++;
+for (index = 0; s1[index] || s2[index]; index++)
+len++;
 
-int len2 = 0;
-while (s2[len2])
-len2++;
+concat_str = malloc(sizeof(char) * len);
 
-char *concat_str = (char *)malloc(len1 + len2 + 1);
-
-if (!concat_str)
+if (concat_str == NULL)
 return (NULL);
- 
 
-void copy(char *dest, char *src)
-{
-*dest = *src;
-if (*src)
-{
-copy(dest + 1, src + 1);
-}
-}
+for (index = 0; s1[index]; index++)
+concat_str[concat_index++] = s1[index];
 
-copy(concat_str, s1);
-copy(concat_str + len1, s2);
-concat_str[len1 + len2] = '\0';
+for (index = 0; s2[index]; index++)
+concat_str[concat_index++] = s2[index];
 
 return (concat_str);
 }
-
- 
