@@ -3,33 +3,31 @@
 #include <stdlib.h>
 
 /**
-* _strdup - Duplicates a string without using a for loop.
-* @str: The string to duplicate.
+* _strdup - Returns a pointer to a newly-allocated space in memory
+*           containing a copy of the string given as parameter.
+* @str: The string to be copied.
 *
-* Return: A pointer to the duplicated string, or NULL on failure.
+* Return: If str == NULL or insufficient memory is available - NULL.
+*         Otherwise - a pointer to the duplicated string.
 */
 char *_strdup(char *str)
 {
+char *strCpy;
+int a, len = 0;
 if (str == NULL)
 return (NULL);
 
-int length = 0;
-while (str[length] != '\0')
-length++;
+for (a = 0; str[a]; a++)
+len++;
+strCpy = malloc(sizeof(char) * (len + 1));
 
-char *dup_str = (char *)malloc(length + 1);
-
-if (dup_str == NULL)
+if (strCpy == NULL)
 return (NULL);
 
-void copy(char *dest, char *src, int i)
-{
-dest[i] = src[i];
-if (src[i] != '\0')
-copy(dest, src, i + 1);
-}
+for (a = 0; str[a]; a++)
+strCpy[a] = str[a];
 
-copy(dup_str, str, 0);
-return (dup_str);
-}
+strCpy[len] = '\0';
 
+return (strCpy);
+}

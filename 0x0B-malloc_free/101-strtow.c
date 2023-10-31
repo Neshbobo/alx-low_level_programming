@@ -2,63 +2,87 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int count_words(const char *str) {
-int count = 0;
-int is_word = 0;
-
-while (*str) {
-if (*str == ' ' || *str == '\t' || *str == '\n') {
-is_word = 0;
-}
-else if (!is_word)
+/**
+* strtow - Split a string into words
+* @str: The input string
+*
+* Return: Pointer to an array of strings, or NULL on failure
+*/
+char **strtow(char *str)
 {
-is_word = 1;
-count++;
+if (str == NULL || *str == '\0')
+return (NULL);
+
+int i, j, len = strlen(str);
+int num_words =
+
+  
+for (i = 0; i < len; i++)
+{
+if (str[i] != ' ' && (i == 0 || str[i - 1] == ' '))
+{
+num_words++;
 }
-str++;
 }
 
-return count;
+if (num_words == 0)
+return (NULL);
+
+char **words = (char **)malloc((num_words + 1) * sizeof(char *));
+if (words == NULL)
+return (NULL);
+
+i = 0;
+int word_start = 0;
+int in_word = 0;
+
+    
+for (j = 0; j <= len; j++)
+{
+if (str[j] == ' ' || str[j] == '\0')
+{
+if (in_word)
+{
+words[i] = (char *)malloc(j - word_start + 1);
+if (words[i] == NULL)
+{
+for (i = 0; i < num_words; i++) free(words[i]);
+free(words);
+return (NULL);
+}
+strncpy(words[i], str + word_start, j - word_start);
+words[i][j - word_start] = '\0';
+i++;
+in_word = 0;
+}
+}
+else if (!in_word)
+{
+word_start = j;
+in_word = 1;
+}
 }
 
-char **strtow(char *str) {
-    if (str == NULL || *str == '\0') {
-        return NULL;
-    }
+words[num_words] = NULL;
+return (words);
+}
 
-    int num_words = count_words(str);
-    if (num_words == 0) {
-        return NULL;
-    }
+int main()
+{
+char input[] = "This is a test";
+char **result = strtow(input);
 
-    char **words = (char **)malloc((num_words + 1) * sizeof(char *));
-    if (words == NULL) {
-        return NULL;
-    }
+if (result != NULL)
+{
+int i = 0;
+while (result[i] != NULL)
+{
+printf("%s\n", result[i]);
+free(result[i]);
+i++;
+}
+free(result);
+}
 
-    int word_index = 0;
-    int word_start = 0;
-    int in_word = 0;
-
-    for (int i = 0; str[i] != '\0'; i++) {
-        if (str[i] == ' ' || str[i] == '\t' || str[i] == '\n') {
-            if (in_word) {
-                str[i] = '\0';
-                words[word_index] = &str[word_start];
-                word_index++;
-                in_word = 0;
-            }
-        } else if (!in_word) {
-            word_start = i;
-            in_word = 1;
-        }
-    }
-
-    if (in_word) {
-        words[word_index] = &str[word_start];
-    }
-
-    words[num_words] = NULL;
-
-    return words;
+return (0);
 }
