@@ -4,35 +4,26 @@
 #include <string.h>
 
 /**
-* array_range - Creates an array of integers from min to max.
-* @min: Minimum value (included).
-* @max: Maximum value (included).
+* _calloc - allocate memory using malloc and initialize it to zero
+*@nmemb: number of elements
+*@size: size of the memory block to be allocated
 *
-* Return: A pointer to the newly created array or NULL on failure.
+*Return: poiner to the address of the memory block
 */
-int *array_range(int min, int max)
+void *_calloc(unsigned int nmemb, unsigned int size)
 {
-int *arr;
-int i, size;
+char *block;
+unsigned int i;
 
-if (min > max)
+if (nmemb == 0 || size == 0)
 return (NULL);
-
-size = max - min + 1;
-arr = malloc(size * sizeof(int));
-
-if (arr == NULL)
-return (NULL);
-
-for (i = 0; i < size; i++)
-arr[i] = min++;
-
-return (arr);
+block = malloc(nmemb * size);
+if (block != NULL)
+{
+for (i = 0; i < (nmemb * size); i++)
+block[i] = 0;
+return (block);
 }
-
-
-
-
-
-
-
+else
+return (NULL);
+}
