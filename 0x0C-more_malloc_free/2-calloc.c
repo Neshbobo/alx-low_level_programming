@@ -4,24 +4,26 @@
 #include <string.h>
 
 /**
-* _calloc - Allocates memory for an array and initializes it to zero.
-* @nmemb: Number of elements in the array.
-* @size: Size in bytes of each element.
+* _calloc - allocate memory using malloc and initialize it to zero
+*@nmemb: number of elements
+*@size: size of the memory block to be allocated
 *
-* Return: A pointer to the allocated and initialized memory or NULL on failure.
+*Return: poiner to the address of the memory block
 */
 void *_calloc(unsigned int nmemb, unsigned int size)
 {
+char *block;
+unsigned int i;
+
 if (nmemb == 0 || size == 0)
 return (NULL);
-
-void* ptr = malloc(nmemb * size);
-
-if (ptr == NULL)
-return (NULL);
-
-memset(ptr, 0, nmemb * size);
-
-return (ptr);
+block = malloc(nmemb * size);
+if (block != NULL)
+{
+for (i = 0; i < (nmemb * size); i++)
+block[i] = 0;
+return (block);
 }
-
+else
+return (NULL);
+}
