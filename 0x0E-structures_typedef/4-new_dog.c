@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <string.h>
 
 /**
 * new_dog - Creates a new dog with copies of name and owner.
@@ -29,4 +30,6 @@ return (NULL);
 new_dog->age = age;
 return (new_dog);
 }
+
+
 
