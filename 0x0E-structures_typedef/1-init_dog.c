@@ -4,20 +4,23 @@
 
 /**
 * init_dog - Initializes a struct dog.
-* @d: Pointer to the struct dog to be initialized.
-* @name: The name of the dog.
-* @age: The age of the dog.
-* @owner: The owner of the dog.
-*
-* Description: This function initializes a struct dog with the provided name, age, and owner.
+* @d: Pointer to the struct dog.
+* @name: Name of the dog.
+* @age: Age of the dog.
+* @owner: Owner of the dog.
 */
-void init_dog(struct dog *d, char *name, float age, char *owner)
-{
-if (d == NULL)
-return;
+void init_dog(struct dog *d, char *name, float age, char *owner);
 
-d->name = name;
-d->age = age;
-d->owner = owner;
+/**
+* main - Entry point
+* Description: Initializes a struct dog using the init_dog function.
+* Return: Always 0
+*/
+int main(void)
+{
+struct dog myDog;
+init_dog(&myDog, "Buddy", 3.5, "John Doe");
+return (0);
 }
+
 
