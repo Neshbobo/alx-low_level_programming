@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include "dog.h"
 
 /**
 * init_dog - Initializes a struct dog.
@@ -17,3 +16,4 @@ d->age = age;
 d->owner = owner;
 }
 }
+
