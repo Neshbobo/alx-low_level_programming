@@ -8,9 +8,12 @@
 */
 void print_name(char *name, void (*f)(char *))
 {
-/* Check if the name and function pointer are valid */
+/*
+* Check if the provided name and function pointer are valid.
+* If they are valid, call the custom printing function to print the name.
+*/
 if (name != NULL && f != NULL)
 {
-f(name); /* Call the custom printing function */
+f(name);
 }
 }
