@@ -1,18 +1,16 @@
+#include "function_pointers.h"
 #include <stdio.h>
 
 /**
-* print_name - Prints a name using a custom function.
-* @name: The name to be printed.
-* @f: A function pointer for printing the name.
+* print_name - is our main function
+* @name: is a name passed as a parameter
+* @f: is a function(to a pointer )
+* Return: nothing
 */
 void print_name(char *name, void (*f)(char *))
 {
-/*
-* Check if the provided name and function pointer are valid.
-* If they are valid, call the custom printing function to print the name.
-*/
-if (name != NULL && f != NULL)
-{
+if (name ==  NULL || f == NULL)
+return;
 f(name);
 }
-}
+
