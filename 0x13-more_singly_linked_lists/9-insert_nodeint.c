@@ -1,7 +1,7 @@
 #include "lists.h"
 
 /**
-* insert_nodeint_at_index.
+* insert_nodeint_at_index - func takes three arguments.
 * @head: A pointer to a pointer to the head of the list.
 * @idx: The index at which the new node should be added. Index starts at 0.
 * @n: The integer value to be stored in the new node.
