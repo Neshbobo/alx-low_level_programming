@@ -1,0 +1,40 @@
+#include "lists.h"
+
+/**
+* delete_nodeint_at_index - func takes two arguments head and index.
+* @head: A pointer to a pointer to the head of the list.
+* @index: The index of the node that should be deleted. Index starts at 0.
+*
+* Return: 1 if the deletion succeeded, -1 if it failed.
+*/
+int delete_nodeint_at_index(listint_t **head, unsigned int index)
+{
+listint_t *current = *head;
+listint_t *temp;
+unsigned int count = 0;
+
+if (head == NULL || *head == NULL)
+return (-1);
+
+if (index == 0)
+{
+temp = *head;
+*head = temp->next;
+free(temp);
+return (1);
+}
+while (count < index - 1 && current != NULL)
+{
+current = current->next;
+count++;
+}
+
+if (current == NULL || current->next == NULL)
+return (-1);
+
+temp = current->next;
+current->next = temp->next;
+free(temp);
+
+return (1);
+}
