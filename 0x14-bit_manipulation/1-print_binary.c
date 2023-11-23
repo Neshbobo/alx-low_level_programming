@@ -2,22 +2,28 @@
 
 /**
 * print_binary - Prints the binary representation of a number.
-* @n: The unsigned long int to be converted and printed.
-*
-* Return: void.
+* @n: The input number.
 */
 void print_binary(unsigned long int n)
 {
-int shift = sizeof(unsigned long int) * 8 - 1;
+unsigned long int mask = 1UL << ((sizeof(unsigned long int) * 8) - 1);
+int bit_flag = 0;
 
-while (shift > 0 && !(n & (1UL << shift)))
-shift--;
-
-while (shift >= 0)
+if (n == 0)
 {
-putchar((n & (1UL << shift)) ? '1' : '0');
-shift--;
+putchar('0');
+return;
 }
 
-putchar('\n');
+while (mask > 0)
+{
+if ((n & mask) == 0 && bit_flag == 1)
+putchar('0');
+else if ((n & mask) != 0)
+{
+putchar('1');
+bit_flag = 1;
+}
+mask >>= 1;
+}
 }
